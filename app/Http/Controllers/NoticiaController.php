@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Materia;
+use App\Noticia;
+use App\Aula;
 use Illuminate\Http\Request;
-use App\Http\Requests\MateriaRequest;
+use App\Http\Requests\NoticiaRequest;
 
-class MateriaController extends Controller
+class NoticiaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +16,8 @@ class MateriaController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
-        }else{
-            $materias = Materia::orderBy('nome')->paginate(1);
-        }
         
-        return view('materia.index' , ['materias' => $materias]);
+        return view('agendamento.index' , ['agendamentos' => $agendamentos]);
     }
 
     /**
@@ -31,7 +27,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-         return view('materia.store');
+         $aulas = Aulas::all();
+         return view('aula.store' , ['aulas' => $aulas]);
     }
 
     /**
@@ -40,11 +37,11 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MateriaRequest $request)
+    public function store(AgendamentoRequest $request)
     {
-        $nova_materia = $request->all();
-        Materia::create($nova_materia);
-        return redirect('materia');
+        $novo_agendamento = $request->all();
+        Agendamento::create($$novo_agendamento);
+        return redirect('noticia');
     }
 
     /**
@@ -66,8 +63,9 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-       $materia = Materia::find($id);
-       return view('materia.edit' , compact('materia'));
+       $aulas = Aulas::all();
+       $agendamento = Agendamento::find($id);
+       return view('agendamento.edit' , compact('agendamento') , ['agendamentos' => $agendamentos]);
     }
 
     /**
@@ -77,10 +75,10 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MateriaRequest $request, $id)
+    public function update(AgendamentoRequest $request, $id)
     {
-        Materia::find($id)->update($request->all());
-		return redirect()->route('materia.index');
+        Agendamento::find($id)->update($request->all());
+		return redirect()->route('agendamento.index');
     }
 
     /**
@@ -91,11 +89,7 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        try {
-        Materia::find($id)->delete();
-        return redirect('materia');
-        } catch (\PDOException $e) {
-            return redirect('materia')->withErrors('Materia está relacionada a uma aula');
-        }
+        Noticia::find($id)->delete();
+        return redirect('agendamento');
     }
 }

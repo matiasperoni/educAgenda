@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Materia;
+use App\Horario;
 use Illuminate\Http\Request;
-use App\Http\Requests\MateriaRequest;
+use App\Http\Requests\HorarioRequest;
 
-class MateriaController extends Controller
+class HorarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class MateriaController extends Controller
     public function index(Request $request)
     {
         if ($request->search) {
-            $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+            $horarios = Horario::where('data','like',"%$request->search%")->orderBy('data')->paginate(5);
         }else{
-            $materias = Materia::orderBy('nome')->paginate(1);
+            $horarios = Horario::orderBy('data')->paginate(5);
         }
         
-        return view('materia.index' , ['materias' => $materias]);
+        return view('horario.index' , ['horarios' => $horarios]);
     }
 
     /**
@@ -31,7 +31,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-         return view('materia.store');
+         return view('horario.store');
     }
 
     /**
@@ -40,11 +40,11 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MateriaRequest $request)
+    public function store(HorarioRequest $request)
     {
-        $nova_materia = $request->all();
-        Materia::create($nova_materia);
-        return redirect('materia');
+        $novo_horario = $request->all();
+        Horario::create($novo_horario);
+        return redirect('horario');
     }
 
     /**
@@ -66,8 +66,8 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-       $materia = Materia::find($id);
-       return view('materia.edit' , compact('materia'));
+       $horario = Horario::find($id);
+       return view('horario.edit' , compact('horario'));
     }
 
     /**
@@ -77,10 +77,10 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MateriaRequest $request, $id)
+    public function update(HorarioRequest $request, $id)
     {
-        Materia::find($id)->update($request->all());
-		return redirect()->route('materia.index');
+        Horario::find($id)->update($request->all());
+		return redirect()->route('horario.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class MateriaController extends Controller
     public function destroy($id)
     {
         try {
-        Materia::find($id)->delete();
-        return redirect('materia');
+        Horario::find($id)->delete();
+        return redirect('horario');
         } catch (\PDOException $e) {
-            return redirect('materia')->withErrors('Materia está relacionada a uma aula');
+            return redirect('horario')->withErrors('Horario está relacionada a uma aula');
         }
     }
 }

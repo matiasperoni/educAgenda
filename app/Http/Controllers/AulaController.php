@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Materia;
+use App\Noticia;
+use App\Aula;
 use Illuminate\Http\Request;
-use App\Http\Requests\MateriaRequest;
+use App\Http\Requests\NoticiaRequest;
 
-class MateriaController extends Controller
+class NoticiaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +16,8 @@ class MateriaController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
-        }else{
-            $materias = Materia::orderBy('nome')->paginate(1);
-        }
         
-        return view('materia.index' , ['materias' => $materias]);
+        return view('aula.index' , ['aulas' => $aulas]);
     }
 
     /**
@@ -31,7 +27,14 @@ class MateriaController extends Controller
      */
     public function create()
     {
-         return view('materia.store');
+         $professores = Pofessor::all();
+         return view('aula.store' , ['profesores' => $professores]);
+
+         $materias = Materia::all();
+         return view('materia.store' , ['materias' => $materias]);
+
+         $horarios = Horario::all();
+         return view('horario.store' , ['horarios' => $horarios]);
     }
 
     /**
@@ -40,11 +43,11 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MateriaRequest $request)
+    public function store(NoticiaRequest $request)
     {
-        $nova_materia = $request->all();
-        Materia::create($nova_materia);
-        return redirect('materia');
+        $nova_aula = $request->all();
+        Aula::create($nova_aula);
+        return redirect('aula');
     }
 
     /**
@@ -66,8 +69,17 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-       $materia = Materia::find($id);
-       return view('materia.edit' , compact('materia'));
+       $professores = Professor::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['professores' => $professores]);
+
+       $materias = Materia::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['materias' => $materias]);
+
+       $horarios = Horarios::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['horarios' => $horarios]);
     }
 
     /**
@@ -77,10 +89,10 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MateriaRequest $request, $id)
+    public function update(AulaRequest $request, $id)
     {
-        Materia::find($id)->update($request->all());
-		return redirect()->route('materia.index');
+        Aula::find($id)->update($request->all());
+		return redirect()->route('aula.index');
     }
 
     /**
@@ -91,11 +103,7 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        try {
-        Materia::find($id)->delete();
-        return redirect('materia');
-        } catch (\PDOException $e) {
-            return redirect('materia')->withErrors('Materia está relacionada a uma aula');
-        }
+        Aula::find($id)->delete();
+        return redirect('aula');
     }
 }

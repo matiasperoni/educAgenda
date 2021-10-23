@@ -91,7 +91,18 @@
                             {{ __('Materia') }}
                     </a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('especialidade.index') }}">
+                        <i class="ni ni-ungroup text-red"></i> 
+                            {{ __('Especialidade') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('horario.index') }}">
+                        <i class="ni ni-ungroup text-red"></i> 
+                            {{ __('Horarios') }}
+                    </a>
+                </li>
              
 
                 <li class="nav-item">

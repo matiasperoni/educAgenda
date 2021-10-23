@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Materia;
+use App\Especialidade;
 use Illuminate\Http\Request;
-use App\Http\Requests\MateriaRequest;
+use App\Http\Requests\EspecialidadeRequest;
 
-class MateriaController extends Controller
+class EspecialidadeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class MateriaController extends Controller
     public function index(Request $request)
     {
         if ($request->search) {
-            $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+            $especialidades = Especialidade::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         }else{
-            $materias = Materia::orderBy('nome')->paginate(1);
+            $especialidades = Especialidade::orderBy('nome')->paginate(5);
         }
         
-        return view('materia.index' , ['materias' => $materias]);
+        return view('especialidade.index' , ['especialidades' => $especialidades]);
     }
 
     /**
@@ -31,7 +31,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-         return view('materia.store');
+         return view('especialidade.store');
     }
 
     /**
@@ -40,11 +40,11 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MateriaRequest $request)
+    public function store(EspecialidadeRequest $request)
     {
-        $nova_materia = $request->all();
-        Materia::create($nova_materia);
-        return redirect('materia');
+        $nova_especialidade = $request->all();
+        Especialidade::create($nova_especialidade);
+        return redirect('especialidade');
     }
 
     /**
@@ -66,8 +66,8 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-       $materia = Materia::find($id);
-       return view('materia.edit' , compact('materia'));
+       $especialidade = Especialidade::find($id);
+       return view('especialidade.edit' , compact('especialidade'));
     }
 
     /**
@@ -77,10 +77,10 @@ class MateriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MateriaRequest $request, $id)
+    public function update(EspecialidadeRequest $request, $id)
     {
-        Materia::find($id)->update($request->all());
-		return redirect()->route('materia.index');
+        Especialidade::find($id)->update($request->all());
+		return redirect()->route('especialidade.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class MateriaController extends Controller
     public function destroy($id)
     {
         try {
-        Materia::find($id)->delete();
-        return redirect('materia');
+        Especialidade::find($id)->delete();
+        return redirect('especialidade');
         } catch (\PDOException $e) {
-            return redirect('materia')->withErrors('Materia está relacionada a uma aula');
+            return redirect('especialidade')->withErrors('Especialidade está relacionada a um Professor');
         }
     }
 }
