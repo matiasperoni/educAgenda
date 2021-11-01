@@ -13,10 +13,11 @@ class CreateAgendamentoTable extends Migration
      */
     public function up()
     {
-         Schema::create('agendamento', function (Blueprint $table) {
-            $table->bigInteger('aula_id')->unsigned();
-            $table->foreign('aula_id')->references('id')->on('aula');
-            $table->timestamps();
+            Schema::create('agendamento', function (Blueprint $table) {
+            $table->bigIncrements('agendamento_id');
+            //$table->bigInteger('aula_id')->unsigned();
+            //$table->foreign('aula_id')->references('id')->on('aula');
+            
         });
     }
 
@@ -26,7 +27,9 @@ class CreateAgendamentoTable extends Migration
      * @return void
      */
     public function down()
-    {
+    
+    {   
+        
         Schema::dropIfExists('agendamento');
     }
 }

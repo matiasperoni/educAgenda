@@ -32,7 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/especialidade/{id}', 'EspecialidadeController@destroy')->name('especialidade.destroy');
 	Route::post('/especialidade/store', 'EspecialidadeController@store')->name('especialidade.store');
 	Route::post('/especialidade/update/{id}', 'EspecialidadeController@update')->name('especialidade.update');
-	Route::post('/especialidade/update/{id}', 'EspecialidadeController@update')->middleware('auth');
 
 	//horario
 	Route::get('/horario', 'HorarioController@index')->name('horario.index');
@@ -57,6 +56,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/agendamento/{id}', 'AgendamentoController@destroy')->name('agendamento.destroy');
 	Route::post('/agendamento/store', 'AgendamentoController@store')->name('agendamento.store');
 	Route::post('/agendamento/update/{id}', 'AgendamentoController@update')->name('agendamento.update');
+
+	//pessoa
+	Route::get('/pessoa', 'PessoaController@index')->name('pessoa.index');
+	Route::get('/pessoa/create', 'PessoaController@create')->name('pessoa.create');
+	Route::get('/pessoa/edit/{id}', 'PessoaController@edit')->name('pessoa.edit');
+	Route::get('/pessoa/{id}', 'PessoaController@destroy')->name('pessoa.destroy');
+	Route::post('/pessoa/store', 'PessoaController@store')->name('pessoa.store');
+	Route::post('/pessoa/update/{id}', 'PessoaController@update')->name('pessoa.update');
 
 });
 

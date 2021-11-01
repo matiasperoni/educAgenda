@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Noticia;
 use App\Aula;
+use App\Pessoa;
+use App\Materia;
+use App\Horario;
 use Illuminate\Http\Request;
-use App\Http\Requests\NoticiaRequest;
+use App\Http\Requests\AulaRequest;
 
-class NoticiaController extends Controller
+class AulaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,9 @@ class NoticiaController extends Controller
      */
     public function index(Request $request)
     {
+        $aulas = Aula::orderBy('aula_id')->paginate(5);
         
-        return view('agendamento.index' , ['agendamentos' => $agendamentos]);
+        return view('aula.index' , ['aulas' => $aulas]);
     }
 
     /**
@@ -27,8 +30,14 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-         $aulas = Aulas::all();
-         return view('aula.store' , ['aulas' => $aulas]);
+         $pessoas = Pessoa::all();
+         return view('aula.store' , ['pessoas' => $pessoas]);
+
+         $materias = Materia::all();
+         return view('aula.store' , ['materias' => $materias]);
+
+         $horarios = Horario::all();
+         return view('aula.store' , ['horarios' => $horarios]);
     }
 
     /**
@@ -37,11 +46,11 @@ class NoticiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgendamentoRequest $request)
+    public function store(AulaRequest $request)
     {
-        $novo_agendamento = $request->all();
-        Agendamento::create($$novo_agendamento);
-        return redirect('noticia');
+        $nova_aula = $request->all();
+        Aula::create($nova_aula);
+        return redirect('aula');
     }
 
     /**
@@ -63,9 +72,17 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-       $aulas = Aulas::all();
-       $agendamento = Agendamento::find($id);
-       return view('agendamento.edit' , compact('agendamento') , ['agendamentos' => $agendamentos]);
+       $pessoas = Pessoa::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['pessoas' => $pessoas]);
+
+       $materias = Materia::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['materias' => $materias]);
+
+       $horarios = Horario::all();
+       $aula = Aula::find($id);
+       return view('aula.edit' , compact('aula') , ['horarios' => $horarios]);
     }
 
     /**
@@ -75,10 +92,10 @@ class NoticiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AgendamentoRequest $request, $id)
+    public function update(AulaRequest $request, $id)
     {
-        Agendamento::find($id)->update($request->all());
-		return redirect()->route('agendamento.index');
+        Aula::find($id)->update($request->all());
+		return redirect()->route('aula.index');
     }
 
     /**
@@ -89,7 +106,7 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        Noticia::find($id)->delete();
-        return redirect('agendamento');
+        Aula::find($id)->delete();
+        return redirect('aula');
     }
 }

@@ -84,13 +84,14 @@
                     </a>
                 </li> -->
 
-               
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('materia.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Materia') }}
-                    </a>
-                </li>
+                <?php if (auth()->user()->tipo == 'P') { ?> 
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{{ route('materia.index') }}">
+                            <i class="ni ni-ungroup text-red"></i> 
+                                {{ __('Materia') }}
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link"  href="{{ route('especialidade.index') }}">
                         <i class="ni ni-ungroup text-red"></i> 
@@ -103,7 +104,24 @@
                             {{ __('Horarios') }}
                     </a>
                 </li>
-             
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('aula.index') }}">
+                        <i class="ni ni-ungroup text-red"></i> 
+                            {{ __('Aula') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('agendamento.index') }}">
+                        <i class="ni ni-ungroup text-red"></i> 
+                            {{ __('Agendamento') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{ route('pessoa.index') }}">
+                        <i class="ni ni-ungroup text-red"></i> 
+                            {{ __('Pessoa') }}
+                    </a>
+                </li>
 
                 <li class="nav-item">
 

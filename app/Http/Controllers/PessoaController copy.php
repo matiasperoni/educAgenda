@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Noticia;
-use App\Aula;
+use App\Especialidade;
+use App\Pessoa;
 use Illuminate\Http\Request;
-use App\Http\Requests\NoticiaRequest;
+use App\Http\Requests\PessoaRequest;
 
-class NoticiaController extends Controller
+class PessoaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class NoticiaController extends Controller
      */
     public function index(Request $request)
     {
+      $pessoas = Pessoa::orderBy('nome')->paginate(5);
         
-        return view('aula.index' , ['aulas' => $aulas]);
+      return view('pessoa.index' , ['pessoas' => $pessoas]);
     }
 
     /**
@@ -27,14 +28,9 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-         $professores = Pofessor::all();
-         return view('aula.store' , ['profesores' => $professores]);
+         $especialidade = Especialidade::all();
+         return view('especialidade.store' , ['especialidades' => $especialidades]);
 
-         $materias = Materia::all();
-         return view('materia.store' , ['materias' => $materias]);
-
-         $horarios = Horario::all();
-         return view('horario.store' , ['horarios' => $horarios]);
     }
 
     /**
@@ -43,11 +39,11 @@ class NoticiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NoticiaRequest $request)
+    public function store(PessoaRequest $request)
     {
-        $nova_aula = $request->all();
-        Aula::create($nova_aula);
-        return redirect('aula');
+        $nova_pessoa = $request->all();
+        Pessoa::create($nova_pessoa);
+        return redirect('pessoa');
     }
 
     /**
@@ -69,18 +65,13 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-       $professores = Professor::all();
-       $aula = Aula::find($id);
-       return view('aula.edit' , compact('aula') , ['professores' => $professores]);
+       $especialidades = Especialidade::all();
+       $pessoas = Pessoa::find($id);
+       return view('pessoa.edit' , compact('pessoa') , ['especialidades' => $especialidades]);
 
-       $materias = Materia::all();
-       $aula = Aula::find($id);
-       return view('aula.edit' , compact('aula') , ['materias' => $materias]);
-
-       $horarios = Horarios::all();
-       $aula = Aula::find($id);
-       return view('aula.edit' , compact('aula') , ['horarios' => $horarios]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -89,10 +80,10 @@ class NoticiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AulaRequest $request, $id)
+    public function update(PessoaRequest $request, $id)
     {
-        Aula::find($id)->update($request->all());
-		return redirect()->route('aula.index');
+        Pessoa::find($id)->update($request->all());
+		return redirect()->route('pessoa.index');
     }
 
     /**
@@ -103,7 +94,7 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        Aula::find($id)->delete();
-        return redirect('aula');
+        Pessoa::find($id)->delete();
+        return redirect('pessoa');
     }
 }

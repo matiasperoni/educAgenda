@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agendamento extends Model
 {
-      protected $table = "aula";
-      protected $fillable = ['aula_id'];
+      protected $table = "agendamento";
+      protected $fillable = ['agendamento_id'];
 
-      public function aula(){
-            return $this->belongsTo("App\Aula");
-      }
+      //public function aula(){
+        //    return $this->belongsTo("App\Aula");
+     // }
 }

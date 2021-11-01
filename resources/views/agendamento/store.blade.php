@@ -18,9 +18,9 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="aula_id">Aula</label>
-                            <select class="form-control" name="aula_id" id="categoria_id">
+                            <select class="form-control" name="aula_id" id="agendamento_id">
                                 <option value="">Selecione</option>
-                                    @foreach($categorias as $categoria)
+                                    @foreach($agendamentos as $agendamento)
                                         <option value="{{$aula->id}}">{{$aula->horaInicio}}</option>
                                     @endforeach
                             </select>

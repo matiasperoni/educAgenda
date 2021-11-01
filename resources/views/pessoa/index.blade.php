@@ -6,13 +6,13 @@
     <div class="container-fluid mt--9">
           
     <div class="mb-3 bg-white" style="border:2px solid #fff;padding:10px;border-radius:10px;border: 1px solid #ededed;display:flex;align-items: center ">
-      <a href="{{ route('agendamento.create') }}">
+      <a href="{{ route('pessoa.create') }}">
         <button class="btn btn-icon btn-success" type="button">
           <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
             <span class="btn-inner--text">Novo</span>
         </button>
       </a>
-      <form id="form-search" action="{{ route('agendamento.index') }}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+      <form id="form-search" action="{{ route('pessoa.index') }}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -32,31 +32,39 @@
                         <tr>
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
-                        <th scope="col">Aula</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Especialidade</th>
+                        <th scope="col">CPF/CNPJ</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Professor</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Senha</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($agendamentos as $agendamento)
+                    @foreach ($pessoas as $pessoa)
                         <tr>
                             <td style="padding: 10px;width: 50px">
-                              <a href="{{ route('agendamento.edit' , ['id' => $agendamento->id]) }}" >
+                              <a href="{{ route('pessoa.edit' , ['id' => $pessoa->id]) }}" >
                                 <button class="btn btn-sm btn-icon btn-3 btn-primary" type="button" style="width: 30px;cursor:pointer">
                                     <span class="btn-inner--icon"><i class="ni ni-archive-2 text-white"></i></span>
                                 </button>
                                </a>
-                                <a href="{{ route('agendamento.destroy' , ['id' => $agendamento->id]) }}" >
+                                <a href="{{ route('pessoa.destroy' , ['id' => $pessoa->id]) }}" >
                                     <button class="btn btn-sm btn-icon btn-3 btn-danger" type="button" style="width: 30px"  >
                                         <span class="btn-inner--icon"><i class="ni ni-fat-remove text-white"></i></span>
                                     </button>
                                 </a>
                             </td>
-                            <th scope="row" style="width: 100px">{{$agendamento->id}}</th>
-                            <td>{{$agendamento->aula}}</td>
+                            <th scope="row" style="width: 100px">{{$pessoa->id}}</th>
+                            <td>{{$pessoa->nome}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                     </table>
-                   {{ $agendamentos->links() }}
+                   {{ $pessoas->links() }}
                 </div>
             </div>
         </div>

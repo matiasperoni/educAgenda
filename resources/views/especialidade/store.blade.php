@@ -16,6 +16,10 @@
             </ul>
         @endif
         <div class="row">
+            <div class="col-xl-12">
+            <form method="post" action="{{route('especialidade.store')}}" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="nome">Nome</label>
@@ -44,6 +48,20 @@
                 </div>
         @include('layouts.footers.auth')
     </div>
+                <a href="{{route('especialidade.index')}}">
+                        <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </form>
+            </div>
+        </div>
+        @include('layouts.footers.auth')
+    </div>
 
 @endsection
+
+
+
+
+
 
