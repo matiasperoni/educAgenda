@@ -24,7 +24,7 @@ class MateriaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:5',
+            'id_disciplina' => 'required',
         ];
     }
 

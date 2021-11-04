@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Horario extends Model
 {
-    protected $fillable = ['horaInicio' ,'horaFim' , 'data'];
+    protected $fillable = ['horario' , 'data'];
 }

@@ -7,7 +7,7 @@
 
 
  <div class="container-fluid mt--9">
-     <h1>Materia</h1>
+     <h1>Horarios</h1>
         @if($errors->any())
             <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -22,14 +22,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="horaInicio">Hora Início</label>
-                            <input type="time" class="form-control" name="horaInicio" id="horaInicio" required>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="horaFim">Hora Fim</label>
-                            <input type="time" class="form-control" name="horaFim" id="horaFim" required>
+                            <label for="horario">Hora</label>
+                            <input type="time" class="form-control" name="horario" id="horario" required>
                         </div>
                     </div>
                     <div class="col">

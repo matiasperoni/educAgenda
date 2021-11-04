@@ -88,41 +88,25 @@
                     <li class="nav-item">
                         <a class="nav-link"  href="{{ route('materia.index') }}">
                             <i class="ni ni-ungroup text-red"></i> 
-                                {{ __('Materia') }}
+                                {{ __('Dar Aulas') }}
                         </a>
                     </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{{ route('horario.index') }}">
+                            <i class="ni ni-ungroup text-red"></i> 
+                                {{ __('Horarios') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="{{ route('aula.index') }}">
+                            <i class="ni ni-ungroup text-red"></i> 
+                                {{ __('Aula') }}
+                        </a>
+                    </li>
+                    
+                    </li>
                 <?php } ?>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('especialidade.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Especialidade') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('horario.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Horarios') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('aula.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Aula') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('agendamento.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Agendamento') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="{{ route('pessoa.index') }}">
-                        <i class="ni ni-ungroup text-red"></i> 
-                            {{ __('Pessoa') }}
-                    </a>
-                </li>
-
                 <li class="nav-item">
 
                     <a class="nav-link active " href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">

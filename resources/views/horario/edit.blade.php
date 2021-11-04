@@ -17,14 +17,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="horaInicio">Hora Início</label>
-                            <input type="time" class="form-control" name="horaInicio" id="horaInicio" value="{{$horario->horaInicio}}" required>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="horaFim">Hora Fim</label>
-                            <input type="time" class="form-control" name="horaFim" id="horaFim" value="{{$horario->horaFim}}" required>
+                            <label for="horario">Horário</label>
+                            <input type="time" class="form-control" name="horario" id="horario" value="{{$horario->horario}}" required>
                         </div>
                     </div>
                     <div class="col">

@@ -39,8 +39,7 @@
                         <tr>
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
-                        <th scope="col">Hora Início</th>
-                        <th scope="col">Hora Fim</th>
+                        <th scope="col">Horário</th>
                         <th scope="col">Data</th>
                         </tr>
                     </thead>
@@ -60,8 +59,7 @@
                                 </a>
                             </td>
                             <th scope="row" style="width: 100px">{{$horario->id}}</th>
-                            <td>{{$horario->horaInicio}}</td>
-                            <td>{{$horario->horaFim}}</td>
+                            <td>{{$horario->horario}}</td>
                             <td>{{$horario->data}}</td>
                         </tr>
                         @endforeach
