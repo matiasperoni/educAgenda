@@ -15,13 +15,13 @@ class ArquivoController extends Controller
      */
     public function index(Request $request)
     {
-        // if ($request->search) {
-        //     $arquivos = Arquivo::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
-        // }else{
-            $arquivo = Arquivo::orderBy('nome')->paginate(5);
-        // }
+        if ($request->search) {
+            $arquivos = Arquivo::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+        }else{
+            $arquivos = Arquivo::orderBy('nome')->paginate(5);
+        }
         
-        return view('arquivo.index' , ['arquivos' => $arquivo]);
+        return view('arquivo.index' , ['arquivos' => $arquivos]);
     }
 
     /**
@@ -31,7 +31,7 @@ class ArquivoController extends Controller
      */
     public function create()
     {
-         return view('Arquivo.store');
+         return view('arquivo.store');
     }
 
     /**
@@ -40,7 +40,7 @@ class ArquivoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArquivoRequest $request)
+    public function store(arquivoRequest $request)
     {
         $nova_arquivo = $request->all();
         Arquivo::create($nova_arquivo);

@@ -53,15 +53,15 @@ class AulaController extends Controller
                         ]);
 
         //Arquivos
-        $arquivo = $request->arquivo;
-        foreach($arquivo as $a => $value) {
-            Arquivo::create([
+        $arquivos = $request->arquivos;
+        foreach($arquivos as $a => $value) {
+            AulaArquivos::create([
                             'aula_id' => $aula->id,
-                            'arquivo_id' => $arquivo[$a]
+                            'arquivo_id' => $arquivos[$a]
                         ]);
         }
 
-        return redirect('produtokit');
+        return redirect('arquivo');
 
 
 

@@ -11,6 +11,6 @@ class Aula extends Model
 
       public function produtos()
         {
-            return $this->hasMany("App\AulaMaterias");
+            return $this->hasMany("App\Arquivo");
         }
 }

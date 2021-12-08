@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome da arquivo" required>
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome da Arquivo" required>
                         </div>
                     </div>
                 </div>

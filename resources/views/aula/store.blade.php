@@ -67,10 +67,10 @@ $(document).ready(function() {
         e.preventDefault();
         x++;
         var newField = `<div><div class="form-group">
-                                <label for="arquivo" style="display: block;">Arquivo</label>
-                                <select class="form-control" name="arquivo[]" id="arquivo" style="width:400px;float:left">
+                                <label for="arquivos" style="display: block;">Arquivos</label>
+                                <select class="form-control" name="arquivos[]" id="arquivos" style="width:400px;float:left">
                                     <option value="">Selecione</option>
-                                        @foreach($arquivo as $arquivo)
+                                        @foreach($arquivos as $arquivo)
                                             <option value="{{$arquivo->id}}">{{$arquivo->nome}}</option>
                                         @endforeach
                                 </select>&nbsp;&nbsp;

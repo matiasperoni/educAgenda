@@ -58,7 +58,6 @@
                             <td>
                             @foreach ($aula->materias as $p)
                             <li>{{$p->materia->nome}}</li>
-                            @endforeach
 
                             </td>
                         </tr>
