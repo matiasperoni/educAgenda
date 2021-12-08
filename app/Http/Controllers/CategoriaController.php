@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Especialidade;
+use App\Categoria;
 use Illuminate\Http\Request;
-use App\Http\Requests\EspecialidadeRequest;
+use App\Http\Requests\CategoriaRequest;
 
-class EspecialidadeController extends Controller
+class CategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class EspecialidadeController extends Controller
     public function index(Request $request)
     {
         if ($request->search) {
-            $especialidades = Especialidade::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+            $categorias = Categoria::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         }else{
-            $especialidades = Especialidade::orderBy('nome')->paginate(5);
+            $categorias = Categoria::orderBy('nome')->paginate(5);
         }
         
-        return view('especialidade.index' , ['especialidades' => $especialidades]);
+        return view('categoria.index' , ['categorias' => $categorias]);
     }
 
     /**
@@ -31,7 +31,7 @@ class EspecialidadeController extends Controller
      */
     public function create()
     {
-         return view('especialidade.store');
+         return view('categoria.store');
     }
 
     /**
@@ -40,11 +40,11 @@ class EspecialidadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EspecialidadeRequest $request)
+    public function store(CategoriaRequest $request)
     {
-        $nova_especialidade = $request->all();
-        Especialidade::create($nova_especialidade);
-        return redirect('especialidade');
+        $nova_categoria = $request->all();
+        Categoria::create($nova_categoria);
+        return redirect('categoria');
     }
 
     /**
@@ -66,8 +66,8 @@ class EspecialidadeController extends Controller
      */
     public function edit($id)
     {
-       $especialidade = Especialidade::find($id);
-       return view('especialidade.edit' , compact('especialidade'));
+       $categoria = Categoria::find($id);
+       return view('categoria.edit' , compact('categoria'));
     }
 
     /**
@@ -77,10 +77,10 @@ class EspecialidadeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EspecialidadeRequest $request, $id)
+    public function update(CategoriaRequest $request, $id)
     {
-        Especialidade::find($id)->update($request->all());
-		return redirect()->route('especialidade.index');
+        Categoria::find($id)->update($request->all());
+		return redirect()->route('categoria.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class EspecialidadeController extends Controller
     public function destroy($id)
     {
         try {
-        Especialidade::find($id)->delete();
-        return redirect('especialidade');
+        Categoria::find($id)->delete();
+        return redirect('categoria');
         } catch (\PDOException $e) {
-            return redirect('especialidade')->withErrors('Especialidade está relacionada a um Professor');
+            return redirect('categoria')->withErrors('Categoria está relacionada a uma notícia');
         }
     }
 }

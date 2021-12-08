@@ -32,15 +32,15 @@
                         <tr>
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
-                        <th scope="col">Professor</th>
-                        <th scope="col">Materia</th>
-                        <th scope="col">Horario</th>
+                        <th scope="col">Descrção</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Matérias</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($aulas as $aula)
                         <tr>
-                            <td style="padding: 10px;width: 50px">
+                           <td style="padding: 10px;width: 50px">
                               <a href="{{ route('aula.edit' , ['id' => $aula->id]) }}" >
                                 <button class="btn btn-sm btn-icon btn-3 btn-primary" type="button" style="width: 30px;cursor:pointer">
                                     <span class="btn-inner--icon"><i class="ni ni-archive-2 text-white"></i></span>
@@ -52,10 +52,15 @@
                                     </button>
                                 </a>
                             </td>
-                            <th scope="row" style="width: 100px">{{$horario->id}}</th>
-                            <td>{{$aula->professor}}</td>
-                            <td>{{$aula->materia}}</td>
-                            <td>{{$aula->horario}}</td>
+                            <th scope="row" style="width: 100px">{{$aula->id}}</th>
+                            <td>{{$aula->descricao}}</td>
+                            <td>{{$aula->valor}}</td>
+                            <td>
+                            @foreach ($aula->materias as $p)
+                            <li>{{$p->materia->nome}}</li>
+                            @endforeach
+
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

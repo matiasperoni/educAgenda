@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Materia;
+use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests\MateriaRequest;
+use Illuminate\Support\Facades\DB;
 
 class MateriaController extends Controller
 {
@@ -15,11 +17,16 @@ class MateriaController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
-        }else{
-            $materias = Materia::orderBy('nome')->paginate(1);
-        }
+        // if ($request->search) {
+        //     $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+        // }else{
+            // $materias = Materia::orderBy('nome')->paginate(5);
+        // }
+
+        $materias = DB::table('materia')
+            ->join('categoria', 'materia.categoria_id', '=', 'categoria.id')
+            ->select('categoria.nome AS nome_categoria', 'materia.*')
+            ->paginate(5);
         
         return view('materia.index' , ['materias' => $materias]);
     }
@@ -31,7 +38,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-         return view('materia.store');
+         $categorias = Categoria::all();
+         return view('materia.store' , ['categorias' => $categorias]);
     }
 
     /**
@@ -66,8 +74,9 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
+       $categorias = Categoria::all();
        $materia = Materia::find($id);
-       return view('materia.edit' , compact('materia'));
+       return view('materia.edit' , compact('materia') , ['categorias' => $categorias]);
     }
 
     /**
@@ -79,7 +88,7 @@ class MateriaController extends Controller
      */
     public function update(MateriaRequest $request, $id)
     {
-        Materia::find($id)->update($request->all());
+        materia::find($id)->update($request->all());
 		return redirect()->route('materia.index');
     }
 
@@ -91,11 +100,7 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        try {
         Materia::find($id)->delete();
         return redirect('materia');
-        } catch (\PDOException $e) {
-            return redirect('materia')->withErrors('Materia está relacionada a uma aula');
-        }
     }
 }

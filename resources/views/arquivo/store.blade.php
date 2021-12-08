@@ -7,7 +7,7 @@
 
 
  <div class="container-fluid mt--9">
-     <h1>Horarios</h1>
+     <h1>Arquivo</h1>
         @if($errors->any())
             <ul class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -17,23 +17,16 @@
         @endif
         <div class="row">
             <div class="col-xl-12">
-            <form method="post" action="{{route('horario.store')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('arquivo.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="horario">Hora</label>
-                            <input type="time" class="form-control" name="horario" id="horario" required>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="data">Data</label>
-                            <input type="date" class="form-control" name="data" id="data" required>
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite o nome da arquivo" required>
                         </div>
                     </div>
                 </div>
-                <a href="{{route('horario.index')}}">
+                <a href="{{route('arquivo.index')}}">
                         <button type="button" class="btn btn-secondary">Voltar</button>
                 </a>
                 <button type="submit" class="btn btn-success">Salvar</button>
@@ -44,10 +37,4 @@
     </div>
 
 @endsection
-
-
-
-
-
-
 

@@ -1,7 +1,8 @@
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main"
+            aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
@@ -11,10 +12,11 @@
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                        <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
+                            <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
                         </span>
                     </div>
                 </a>
@@ -58,7 +60,9 @@
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                            data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false"
+                            aria-label="Toggle sidenav">
                             <span></span>
                             <span></span>
                         </button>
@@ -68,7 +72,8 @@
             <!-- Form -->
             <form class="mt-4 mb-3 d-md-none">
                 <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="{{ __('Search') }}" aria-label="Search">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended"
+                        placeholder="{{ __('Search') }}" aria-label="Search">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="fa fa-search"></span>
@@ -84,32 +89,50 @@
                     </a>
                 </li> -->
 
-                <?php if (auth()->user()->tipo == 'P') { ?> 
-                    <li class="nav-item">
-                        <a class="nav-link"  href="{{ route('materia.index') }}">
-                            <i class="ni ni-ungroup text-red"></i> 
-                                {{ __('Dar Aulas') }}
-                        </a>
-                    </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link"  href="{{ route('horario.index') }}">
-                            <i class="ni ni-ungroup text-red"></i> 
-                                {{ __('Horarios') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="{{ route('aula.index') }}">
-                            <i class="ni ni-ungroup text-red"></i> 
-                                {{ __('Aula') }}
-                        </a>
-                    </li>
-                    
-                    </li>
+                <?php if (auth()->user()->tipo == 'P') { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('aula.index') }}">
+                        <i class="ni ni-ungroup text-red"></i>
+                        {{ __('Dar Aulas') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('arquivo.index') }}">
+                        <i class="ni ni-ungroup text-red"></i>
+                        {{ __('Arquivos') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('categoria.index') }}">
+                        <i class="ni ni-ungroup text-red"></i>
+                        {{ __('Categoria') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('materia.index') }}">
+                        <i class="ni ni-ungroup text-red"></i>
+                        {{ __('Matéria') }}
+                    </a>
+                </li>
+
+
+                <?php }else { ?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('aula.index') }}">
+                        <i class="ni ni-ungroup text-red"></i>
+                        {{ __('Aula') }}
+                    </a>
+                </li>
+
                 <?php } ?>
+
                 <li class="nav-item">
 
-                    <a class="nav-link active " href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                    <a class="nav-link active " href="#navbar-examples" data-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="navbar-examples">
                         <i class="ni ni-circle-08 text-pink"></i>
                         <span class="nav-link-text" style="color: #f4645f;">{{ __('Usuários') }}</span>
                     </a>
@@ -130,11 +153,11 @@
                     </div>
                 </li>
 
-                
+
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
-                    </a>
+                </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">

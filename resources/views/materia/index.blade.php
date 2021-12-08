@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
+<?php
+    // print_r($materias);
+    // exit();
+?>
+
 @section('content')
 @include('layouts.headers.cards')
 
     <div class="container-fluid mt--9">
+    <h1>Materias</h1>
           
-    @if($errors->any())
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
     <div class="mb-3 bg-white" style="border:2px solid #fff;padding:10px;border-radius:10px;border: 1px solid #ededed;display:flex;align-items: center ">
       <a href="{{ route('materia.create') }}">
         <button class="btn btn-icon btn-success" type="button">
@@ -40,6 +39,7 @@
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
                         <th scope="col">Nome</th>
+                        <th scope="col">Categoria</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +59,7 @@
                             </td>
                             <th scope="row" style="width: 100px">{{$materia->id}}</th>
                             <td>{{$materia->nome}}</td>
+                            <td>{{$materia->nome_categoria}}</td>
                         </tr>
                         @endforeach
                     </tbody>

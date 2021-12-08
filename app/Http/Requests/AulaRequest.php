@@ -24,10 +24,8 @@ class AulaRequest extends FormRequest
     public function rules()
     {
         return [
-            'aula_id' => 'required',
-            'pessoa_id' => 'required',
-            'materia_id' => 'required',
-            'horario_id' => 'required',
+            'descricao' => 'required|min:5',
+            'valor' => 'required'
         ];
     }
 }

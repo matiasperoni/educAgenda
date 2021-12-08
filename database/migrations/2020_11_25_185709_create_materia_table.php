@@ -13,9 +13,12 @@ class CreateMateriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('materia', function (Blueprint $table) {
+         Schema::create('materia', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome' ,100);
+            $table->string('nome' ,50);
+            $table->text('descricao');
+            $table->bigInteger('categoria_id')->unsigned();
+            $table->foreign('categoria_id')->references('id')->on('categoria');
             $table->timestamps();
         });
     }

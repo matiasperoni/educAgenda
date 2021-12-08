@@ -13,13 +13,13 @@
         </ul>
     @endif
     <div class="mb-3 bg-white" style="border:2px solid #fff;padding:10px;border-radius:10px;border: 1px solid #ededed;display:flex;align-items: center ">
-      <a href="{{ route('horario.create') }}">
+      <a href="{{ route('arquivo.create') }}">
         <button class="btn btn-icon btn-success" type="button">
           <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
             <span class="btn-inner--text">Novo</span>
         </button>
       </a>
-      <form id="form-search" action="{{ route('horario.index') }}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+      <form id="form-search" action="{{ route('arquivo.index') }}" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -39,33 +39,31 @@
                         <tr>
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
-                        <th scope="col">Horário</th>
-                        <th scope="col">Data</th>
+                        <th scope="col">Nome</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($horarios as $horario)
+                    @foreach ($arquivos as $arquivo)
                         <tr>
                             <td style="padding: 10px;width: 50px">
-                              <a href="{{ route('horario.edit' , ['id' => $horario->id]) }}" >
+                              <a href="{{ route('arquivo.edit' , ['id' => $arquivo->id]) }}" >
                                 <button class="btn btn-sm btn-icon btn-3 btn-primary" type="button" style="width: 30px;cursor:pointer">
                                     <span class="btn-inner--icon"><i class="ni ni-archive-2 text-white"></i></span>
                                 </button>
                                </a>
-                                <a href="{{ route('horario.destroy' , ['id' => $horario->id]) }}" >
+                                <a href="{{ route('arquivo.destroy' , ['id' => $arquivo->id]) }}" >
                                     <button class="btn btn-sm btn-icon btn-3 btn-danger" type="button" style="width: 30px"  >
                                         <span class="btn-inner--icon"><i class="ni ni-fat-remove text-white"></i></span>
                                     </button>
                                 </a>
                             </td>
-                            <th scope="row" style="width: 100px">{{$horario->id}}</th>
-                            <td>{{$horario->horario}}</td>
-                            <td>{{$horario->data}}</td>
+                            <th scope="row" style="width: 100px">{{$arquivo->id}}</th>
+                            <td>{{$arquivo->nome}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                     </table>
-                   {{ $horarios->links() }}
+                   {{ $arquivos->links() }}
                 </div>
             </div>
         </div>

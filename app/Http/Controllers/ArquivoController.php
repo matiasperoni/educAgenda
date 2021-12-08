@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Horario;
+use App\Arquivo;
 use Illuminate\Http\Request;
-use App\Http\Requests\HorarioRequest;
+use App\Http\Requests\ArquivoRequest;
 
-class HorarioController extends Controller
+class ArquivoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +15,13 @@ class HorarioController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->search) {
-            $horarios = Horario::where('data','like',"%$request->search%")->orderBy('data')->paginate(5);
-        }else{
-            $horarios = Horario::orderBy('data')->paginate(5);
-        }
+        // if ($request->search) {
+        //     $arquivos = Arquivo::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
+        // }else{
+            $arquivo = Arquivo::orderBy('nome')->paginate(5);
+        // }
         
-        return view('horario.index' , ['horarios' => $horarios]);
+        return view('arquivo.index' , ['arquivos' => $arquivo]);
     }
 
     /**
@@ -31,7 +31,7 @@ class HorarioController extends Controller
      */
     public function create()
     {
-         return view('horario.store');
+         return view('Arquivo.store');
     }
 
     /**
@@ -40,11 +40,11 @@ class HorarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HorarioRequest $request)
+    public function store(ArquivoRequest $request)
     {
-        $novo_horario = $request->all();
-        Horario::create($novo_horario);
-        return redirect('horario');
+        $nova_arquivo = $request->all();
+        Arquivo::create($nova_arquivo);
+        return redirect('arquivo');
     }
 
     /**
@@ -66,8 +66,8 @@ class HorarioController extends Controller
      */
     public function edit($id)
     {
-       $horario = Horario::find($id);
-       return view('horario.edit' , compact('horario'));
+       $arquivo = Arquivo::find($id);
+       return view('arquivo.edit' , compact('arquivo'));
     }
 
     /**
@@ -77,10 +77,10 @@ class HorarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(HorarioRequest $request, $id)
+    public function update(ArquivoRequest $request, $id)
     {
-        Horario::find($id)->update($request->all());
-		return redirect()->route('horario.index');
+        Arquivo::find($id)->update($request->all());
+		return redirect()->route('arquivo.index');
     }
 
     /**
@@ -92,10 +92,10 @@ class HorarioController extends Controller
     public function destroy($id)
     {
         try {
-        Horario::find($id)->delete();
-        return redirect('horario');
+        Arquivo::find($id)->delete();
+        return redirect('arquivo');
         } catch (\PDOException $e) {
-            return redirect('horario')->withErrors('Horario está relacionada a uma aula');
+            return redirect('arquivo')->withErrors('Arquivo está relacionada a uma Aula');
         }
     }
 }
