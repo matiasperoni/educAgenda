@@ -18,7 +18,7 @@ class CategoriaController extends Controller
         if ($request->search) {
             $categorias = Categoria::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         }else{
-            $categorias = Categoria::orderBy('nome')->paginate(5);
+            $categorias = Categoria::orderBy('nome')->paginate(3);
         }
         
         return view('categoria.index' , ['categorias' => $categorias]);
@@ -95,7 +95,7 @@ class CategoriaController extends Controller
         Categoria::find($id)->delete();
         return redirect('categoria');
         } catch (\PDOException $e) {
-            return redirect('categoria')->withErrors('Categoria está relacionada a uma notícia');
+            return redirect('categoria')->withErrors('Categoria está relacionada a uma matéria');
         }
     }
 }

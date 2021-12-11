@@ -16,6 +16,8 @@ class CreateAulaTable extends Migration
         Schema::create('aula', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('descricao' ,100);
+            $table->bigInteger('materia_id')->unsigned();
+            $table->foreign('materia_id')->references('id')->on('materia');
             $table->decimal('valor', 15, 2)->nullable();
             $table->timestamps();
         });

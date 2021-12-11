@@ -32,9 +32,10 @@
                         <tr>
                         <th scope="col">Ações</th>
                         <th scope="col">#</th>
-                        <th scope="col">Descrção</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Materia</th>
                         <th scope="col">Valor</th>
-                        <th scope="col">Matérias</th>
+                        <th scope="col">Arquivos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +55,12 @@
                             </td>
                             <th scope="row" style="width: 100px">{{$aula->id}}</th>
                             <td>{{$aula->descricao}}</td>
+                            <td>{{$aula->nome_materia}}</td>
                             <td>{{$aula->valor}}</td>
                             <td>
-                            @foreach ($aula->materias as $p)
-                            <li>{{$p->materia->nome}}</li>
+                            @foreach ($aula->arquivos as $a)
+                            <li>{{$a->arquivo->nome}}</li>
+                            @endforeach
 
                             </td>
                         </tr>

@@ -14,7 +14,7 @@ class CreateAulaArquivosTable extends Migration
     public function up()
     {
         Schema::create('aula_arquivos', function (Blueprint $table) {
-            $table->timestamps();
+            $table->bigIncrements('id');
             $table->bigInteger('aula_id')->unsigned();
             $table->foreign('aula_id')->references('id')->on('aula')->onDelete('cascade');
             $table->bigInteger('arquivo_id')->unsigned();

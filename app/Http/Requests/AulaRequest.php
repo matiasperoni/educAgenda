@@ -25,6 +25,7 @@ class AulaRequest extends FormRequest
     {
         return [
             'descricao' => 'required|min:5',
+            'materia_id' => 'required',
             'valor' => 'required'
         ];
     }

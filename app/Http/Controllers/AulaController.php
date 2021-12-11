@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Arquivo;
 use App\Materia;
 use App\Aula;
-use App\Arquivo;
+use App\AulaArquivos;
 use Illuminate\Http\Request;
 use App\Http\Requests\AulaRequest;
+use App\Http\Requests\ArquivoRequest;
+use Illuminate\Support\Facades\DB;
 
 class AulaController extends Controller
 {
@@ -18,13 +21,17 @@ class AulaController extends Controller
     public function index(Request $request)
     {
         // if ($request->search) {
-        //     $aula = Aula::where('descricao','like',"%$request->search%")->orderBy('descricao')->paginate(5);
+        //     $aulas = Aula::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         // }else{
-        //     $aula = Aula::orderBy('descricao')->paginate(5);
+        //     $aulas = Aula::orderBy('valor')->paginate(5);
         // }
-        $aula = Aula::orderBy('valor')->paginate(5);
+
+        $aulas = DB::table('aula')
+            ->join('materia', 'aula.materia_id', '=', 'materia.id')
+            ->select('materia.nome AS nome_materia', 'aula.*')
+            ->paginate(3);
         
-        return view('aula.index' , ['aulas' => $aula]);
+        return view('aula.index' , ['aulas' => $aulas]);
     }
 
     /**
@@ -34,8 +41,10 @@ class AulaController extends Controller
      */
     public function create()
     {
+         $arquivos = Arquivo::all();
+
          $materias = Materia::all();
-         return view('aula.store' , ['materias' => $materias]);
+         return view('aula.store' , ['materias' => $materias], ['arquivos' => $arquivos]);
     }
 
     /**
@@ -46,13 +55,13 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        //Aula com formulario
+
         $aula = Aula::create([
                             'descricao' => $request->get('descricao'),
+                            'materia_id' => $request->get('materia_id'),
                             'valor' => $request->get('valor')
                         ]);
 
-        //Arquivos
         $arquivos = $request->arquivos;
         foreach($arquivos as $a => $value) {
             AulaArquivos::create([
@@ -61,8 +70,7 @@ class AulaController extends Controller
                         ]);
         }
 
-        return redirect('arquivo');
-
+        return redirect('aula');
 
 
     }
@@ -70,11 +78,11 @@ class AulaController extends Controller
 
     public function edit($id)
     {
-       $lista_materias = Materia::all();
-       $aula = Aula::find($id);
-       $materias = $aula->materias;
+       $lista_arquivos = Arquivo::all();
+       $arquivo = Aula::find($id);
+       $arquivos = $aula->arquivos;
 
-       return view('aula.edit' , compact('aula') , ['materias' => $materias , 'lista_materias' => $lista_materias]);
+       return view('aula.edit' , compact('arquivo') , ['arquivos' => $arquivos , 'lista_arquivos' => $lista_arquivos]);
     }
 
     /**
@@ -86,15 +94,15 @@ class AulaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        aula::find($id)->update($request->all());
+        Aula::find($id)->update($request->all());
         
         //DELETA TODOS E INSERE NOVAMENTE
-        AulaMaterias::where('aula_id', $id)->delete();
-        $materias = $request->materias;
-        foreach($materias as $a => $value) {
-            AulaMaterias::create([
+        Aulaarquivos::where('aula_id', $id)->delete();
+        $arquivos = $request->arquivos;
+        foreach($arquivos as $a => $value) {
+            AulaArquivos::create([
                             'aula_id' => $id,
-                            'materia_id' => $materias[$a]
+                            'arquivo_id' => $arquivos[$a]
                         ]);
         }
 
@@ -110,7 +118,7 @@ class AulaController extends Controller
      */
     public function destroy($id)
     {
-        aula::find($id)->delete();
+        Aula::find($id)->delete();
 
         return redirect('aula');
     }

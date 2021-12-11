@@ -15,6 +15,7 @@
             <form method="post" action="{{route('aula.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
+                    <div class="w-100"></div>
                     <div class="col">
                         <div class="form-group">
                             <label for="descricao">Descrição</label>
@@ -22,6 +23,18 @@
                                 placeholder="Digite a Descrição" required></textarea>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="materia_id">Materia</label>
+                            <select class="form-control" name="materia_id" id="materia_id">
+                                <option value="">Selecione</option>
+                                @foreach($materias as $materia)
+                                <option value="{{$materia->id}}">{{$materia->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="valor">Valor</label>
@@ -67,7 +80,7 @@ $(document).ready(function() {
         e.preventDefault();
         x++;
         var newField = `<div><div class="form-group">
-                                <label for="arquivos" style="display: block;">Arquivos</label>
+                                <label for="arquivos" style="display: block;">Arquivo</label>
                                 <select class="form-control" name="arquivos[]" id="arquivos" style="width:400px;float:left">
                                     <option value="">Selecione</option>
                                         @foreach($arquivos as $arquivo)

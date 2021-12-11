@@ -18,7 +18,7 @@ class ArquivoController extends Controller
         if ($request->search) {
             $arquivos = Arquivo::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         }else{
-            $arquivos = Arquivo::orderBy('nome')->paginate(5);
+            $arquivos = Arquivo::orderBy('nome')->paginate(3);
         }
         
         return view('arquivo.index' , ['arquivos' => $arquivos]);

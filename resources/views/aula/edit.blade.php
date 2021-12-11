@@ -22,6 +22,17 @@
                                 placeholder="Digite a Descrição" required></textarea>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="materia_id">Materia</label>
+                            <select class="form-control" name="materia_id" id="materia_id">
+                                @foreach($materias as $materia)
+                                <option {{$materia->id == $materia->materia_id ? 'selected' : ''}}
+                                    value="{{$materia->id}}">{{$materia->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="valor">Valor</label>
@@ -85,11 +96,11 @@ $(document).ready(function() {
         e.preventDefault();
         x++;
         var newField = `<div><div class="form-group">
-                                <label for="materias" style="display: block;">Materia</label>
-                                <select class="form-control" name="materias[]" id="materias" style="width:400px;float:left">
+                                <label for="arquivos" style="display: block;">Arquivo</label>
+                                <select class="form-control" name="arquivos[]" id="arquivos" style="width:400px;float:left">
                                     <option value="">Selecione</option>
-                                        @foreach($lista_materias as $lista)
-                                            <option value="{{$lista->id}}">{{$lista->nome}}</option>
+                                        @foreach($arquivos as $arquivo)
+                                            <option value="{{$arquivo->id}}">{{$arquivo->nome}}</option>
                                         @endforeach
                                 </select>&nbsp;&nbsp;
                                 <button type="button" class="remove_field btn btn-danger btn-circle fa fa-times"></button>

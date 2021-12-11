@@ -20,7 +20,7 @@ class MateriaController extends Controller
         // if ($request->search) {
         //     $materias = Materia::where('nome','like',"%$request->search%")->orderBy('nome')->paginate(5);
         // }else{
-            // $materias = Materia::orderBy('nome')->paginate(5);
+        //     $materias = Materia::orderBy('nome')->paginate(3);
         // }
 
         $materias = DB::table('materia')
